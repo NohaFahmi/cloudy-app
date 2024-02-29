@@ -6,17 +6,20 @@
   .city-card {
     display: flex;
     justify-content: space-between;
-    padding: 20px;
-    align-items: baseline;
+    padding: 25px;
+    align-items: center;
     --background: #202B3B;
     color: var(--ion-color-primary-contrast);
     border-radius: 15px;
     h1 {
-      font-size: 2rem;
+      font-size: 1.75rem;
+      font-weight: 800;
       color: var(--ion-color-primary-contrast);
+      margin: 0;
     }
     .temp {
-      font-size: 2rem;
+      font-size: 1.5rem;
+      font-weight: 800;
     }
   }
 }
