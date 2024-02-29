@@ -1,0 +1,48 @@
+.main-tab {
+  background-color: #0B131E;
+  color: #F0F1F1;
+  ion-content {
+    --background: #0B131E;
+  }
+  ion-header {
+    border: none;
+    box-shadow: none;
+    height: 50vh;
+    border-radius: 0 0 30px 30px;
+    --background: #0B131E;
+    text-align: center;
+    padding: 30px 5px 5px;
+  }
+  .location-name {
+    h1 {
+      color: #eee;
+      font-weight: bolder;
+      font-size: 3rem;
+    }
+    .rain-chance {
+      font-size: 12px;
+      color: #4F5660;
+    }
+  }
+  .temperature-degree {
+    font-size: 3rem;
+    font-weight: 800;
+  }
+  .text-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+  }
+  ion-toolbar {
+    --background: none;
+  }
+  .search-btn {
+    ion-icon {
+      color: #eee;
+    }
+  }
+  .tab-content {
+  }
+}

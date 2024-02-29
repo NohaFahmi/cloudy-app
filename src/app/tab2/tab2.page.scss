@@ -1,0 +1,41 @@
+.cities-tab {
+  background: #0B131E;
+  .page-title {
+    font-size: 2.5rem;
+  }
+  ion-list, ion-label {
+    padding: 10px;
+    text-align: center;
+    --background-color: #202B3B;
+  }
+  ion-item {
+    --background: #202B3B;
+    --color: #9399A2;
+    --border-color: #9399A2;
+  }
+  ion-header {
+    border: none;
+    box-shadow: none;
+    padding: 5px;
+  }
+  ion-header, ion-toolbar, ion-title, ion-content {
+    --background: #0B131E;
+    color: var(--ion-color-primary-contrast)
+  }
+  //ion-searchbar.cities-search {
+  //  --background: #202B3B;
+  //  --color: #DDE0E4;
+  //  --placeholder-color: #DDE0E4;
+  //  --icon-color: #DDE0E4;
+  //  --clear-button-color: #DDE0E4;
+  //  --border-radius: 4px;
+  //}
+  //
+  //ion-searchbar.ios.cities-search {
+  //  --cancel-button-color: #DDE0E4;
+  //}
+  //
+  //ion-searchbar.md.cities-search {
+  //  --cancel-button-color: #DDE0E4;
+  //}
+}

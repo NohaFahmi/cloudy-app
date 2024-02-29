@@ -1,0 +1,33 @@
+.search-page {
+  padding: 0 10px;
+  background-color: #0B131E;
+  color: #F0F1F1;
+  ion-header, ion-toolbar, ion-content,
+  ion-list, ion-item {
+    --background: #0B131E;
+    color: #F0F1F1;
+    padding: 0;
+  }
+  ion-header {
+    box-shadow: none;
+  }
+  ion-toolbar {
+    padding: 40px 0 10px;
+  }
+  ion-searchbar {
+    --background: #202B3B;
+    --color: #DDE0E4;
+    --placeholder-color: #DDE0E4;
+    --icon-color: #DDE0E4;
+    --clear-button-color: #DDE0E4;
+    --border-radius: 4px;
+  }
+
+  ion-searchbar.ios {
+    --cancel-button-color: #DDE0E4;
+  }
+
+  ion-searchbar.md {
+    --cancel-button-color: #DDE0E4;
+  }
+}

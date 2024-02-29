@@ -1,17 +1,18 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
+<div class="main-tab">
+  <ion-header>
+    <div class="text-content">
+      <ion-text class="location-name">
+        <h1>Madrid</h1>
+        <p class="rain-chance">Chance of rain: 0%</p>
+      </ion-text>
+      <ion-icon name="sunny" [color]="'#eee'" size="large"></ion-icon>
+      <ion-text>
+        <p class="temperature-degree">32°</p>
+      </ion-text>
+    </div>
   </ion-header>
+  <ion-content class="tab-content">
+    <app-forecast-section></app-forecast-section>
+  </ion-content>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
-</ion-content>
+</div>

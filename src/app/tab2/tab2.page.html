@@ -1,17 +1,20 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<div class="cities-tab">
+  <ion-header>
     <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
+      <ion-title>
+        <h1 class="page-title">My cities</h1>
+      </ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
-</ion-content>
+  <ion-content [fullscreen]="true">
+<!--    <ion-searchbar animated="true"-->
+<!--                   placeholder="Animated"-->
+<!--                   class="cities-search"-->
+<!--                   [debounce]="1000"></ion-searchbar>-->
+    <ng-container>
+      <app-saved-cities></app-saved-cities>
+    </ng-container>
+  </ion-content>
+
+</div>
