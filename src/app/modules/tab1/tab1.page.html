@@ -1,18 +1,24 @@
-<div class="main-tab">
-  <ion-header>
+<div class="main-tab" *ngIf="!isLoading && todayWeatherInfo && weatherInfo">
+  <ion-header [translucent]="false">
     <div class="text-content">
       <ion-text class="location-name">
-        <h1>Madrid</h1>
-        <p class="rain-chance">Chance of rain: 0%</p>
+        <h1>{{userLocationName}}</h1>
+        <p class="current-dt">{{todayWeatherInfo.Date| date:'fullDate'}}</p>
       </ion-text>
-      <ion-icon name="sunny" [color]="'#eee'" size="large"></ion-icon>
+      <ion-img [alt]="todayWeatherInfo.Day.IconPhrase"
+                [src]="getWeatherIconImg(todayWeatherInfo.Day.Icon)"></ion-img>
       <ion-text>
-        <p class="temperature-degree">32°</p>
+        <p class="temperature-degree">{{todayWeatherInfo.Temperature.Maximum.Value}}°{{todayWeatherInfo.Temperature.Maximum.Unit}}</p>
       </ion-text>
     </div>
   </ion-header>
-  <ion-content class="tab-content">
-    <app-forecast-section></app-forecast-section>
+  <ion-content>
+    <app-forecast-section [dailyForecastWeather]="weatherInfo.DailyForecasts"></app-forecast-section>
   </ion-content>
 
 </div>
+<ion-loading show-backdrop="true"
+             css-class="loader"
+             [isOpen]="isLoading"
+             spinner="dots">
+</ion-loading>

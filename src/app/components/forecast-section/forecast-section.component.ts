@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {DailyForecastInfo} from "../../models/common.interface";
+import {DailyForecast} from "../../models/forecast.interface";
 
 enum FORECAST_OPTIONS {
   TODAY= 'today',
@@ -11,8 +13,8 @@ enum FORECAST_OPTIONS {
   styleUrls: ['./forecast-section.component.scss'],
 })
 export class ForecastSectionComponent  implements OnInit {
-  type: FORECAST_OPTIONS = FORECAST_OPTIONS.FUTURE;
-
+  @Input() dailyForecastWeather: DailyForecast[] = [];
+  type: FORECAST_OPTIONS = FORECAST_OPTIONS.TODAY;
   constructor() { }
 
   ngOnInit() {}

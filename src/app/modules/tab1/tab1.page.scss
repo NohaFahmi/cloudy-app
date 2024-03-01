@@ -4,28 +4,34 @@
   ion-content {
     --background: #0B131E;
   }
+  ion-img {
+    width: 100px;
+    height: 100px;
+  }
   ion-header {
     border: none;
     box-shadow: none;
-    height: 50vh;
     border-radius: 0 0 30px 30px;
     --background: #0B131E;
     text-align: center;
-    padding: 30px 5px 5px;
+    padding: 40px 10px;
+  }
+  .text-content {
+    --background: #0B131E;
   }
   .location-name {
     h1 {
       color: #eee;
       font-weight: bolder;
-      font-size: 3rem;
+      font-size: 2rem;
     }
-    .rain-chance {
-      font-size: 12px;
+    .current-dt, .current-time {
+      font-size: 1rem;
       color: #4F5660;
     }
   }
   .temperature-degree {
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: 800;
   }
   .text-content {
@@ -33,16 +39,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 40px;
+    gap: 10px;
   }
-  ion-toolbar {
-    --background: none;
-  }
-  .search-btn {
-    ion-icon {
-      color: #eee;
-    }
-  }
-  .tab-content {
+  ion-content {
+    --offset-bottom: 100% !important;
   }
 }

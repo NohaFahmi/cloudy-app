@@ -3,5 +3,17 @@
   box-sizing: border-box;
 }
 body {
-  font-size: 16px;
+  font-size: 14px;
+}
+
+.loader {
+  --background: none;
+  --spinner-color: var(--ion-color-primary-contrast);
+  ion-spinner.sc-ion-loading-md, ion-spinner.sc-ion-loading-ios {
+    width: 70px;
+    height: 70px;
+  }
+  .loading-wrapper.sc-ion-loading-md, .loading-wrapper.sc-ion-loading-ios {
+    box-shadow: none;
+  }
 }

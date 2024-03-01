@@ -10,7 +10,8 @@
       <ion-label>7 days</ion-label>
     </ion-segment-button>
   </ion-segment>
-    <div [ngSwitch]="type" class="forecast-section__tabs-content">
+    <div [ngSwitch]="type"
+         class="forecast-section__tabs-content">
       <ion-card *ngSwitchCase="FORECAST_OPTIONS.TODAY">
         <ion-card-header>
           <ion-card-title>Today's Forecast</ion-card-title>
@@ -71,7 +72,8 @@
           </div>
         </ion-card-content>
       </ion-card>
-      <ion-card *ngSwitchCase="FORECAST_OPTIONS.FUTURE" class="future-card">
+      <ion-card *ngSwitchCase="FORECAST_OPTIONS.FUTURE"
+                class="future-card">
         <ion-card-header>
           <ion-card-title>7 day  Forecast</ion-card-title>
         </ion-card-header>
