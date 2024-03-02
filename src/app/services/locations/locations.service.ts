@@ -23,22 +23,20 @@ export class LocationsService {
       this.userCoords.set(null);
     });
   };
-  getLocationInfoByGeoposition(): Promise<LocationInfo> {
+  getLocationInfoByGeoposition(coords: Coords): Promise<LocationInfo> {
     return new Promise((resolve, reject) => {
-      if (this.userCoords() !== null) {
-        lastValueFrom(
-          this.httpClient.get<LocationInfo>(`${environment.weatherAPIURL.locations}/cities/geoposition/search`, {
-            params: {
-              apikey: environment.weatherAPIKey,
-              q: `${this.userCoords()?.latitude},${this.userCoords()?.longitude}`
-            }
-          })
-        ).then((location) => {
-          resolve(location);
-        }).catch((error) => {
-          reject(error);
+      lastValueFrom(
+        this.httpClient.get<LocationInfo>(`${environment.weatherAPIURL.locations}/cities/geoposition/search`, {
+          params: {
+            apikey: environment.weatherAPIKey,
+            q: `${this.userCoords()?.latitude},${this.userCoords()?.longitude}`
+          }
         })
-      }
+      ).then((location) => {
+        resolve(location);
+      }).catch((error) => {
+        reject(error);
+      })
     });
   }
 }

@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DailyForecastInfo} from "../../models/common.interface";
-import {DailyForecast} from "../../models/forecast.interface";
+import {AirAndPallon, DailyForecast, HourlyForecast} from "../../models/forecast.interface";
+import {environment} from "../../../environments/environment";
 
 enum FORECAST_OPTIONS {
   TODAY= 'today',
@@ -20,4 +21,16 @@ export class ForecastSectionComponent  implements OnInit {
   ngOnInit() {}
 
   protected readonly FORECAST_OPTIONS = FORECAST_OPTIONS;
+
+  getUVIndexValue(airAndPollen: AirAndPallon[]):number {
+    const item = airAndPollen.filter((item) => item.Name === 'UVIndex')[0];
+    return item ? item.Value : 0;
+  }
+
+  getWeatherIconImg(iconCode: number):string {
+    const code = iconCode < 10 ? `0${iconCode}` : iconCode;
+    return `${environment.weatherAPIURL.imgURL}/${code}-s.png`;
+  }
+
+  protected readonly Math = Math;
 }

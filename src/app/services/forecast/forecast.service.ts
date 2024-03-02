@@ -3,7 +3,7 @@ import {DailyForecastInfo} from "../../models/common.interface";
 import {lastValueFrom} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
-import {Forecast} from "../../models/forecast.interface";
+import {Forecast, HourlyForecast} from "../../models/forecast.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -30,21 +30,4 @@ export class ForecastService {
     });
   }
 
-  getHourlyForecastData(locationKey: string): Promise<any> {
-    return new Promise<any>((resolve, reject) => {
-      lastValueFrom(
-        this.httpClient.get<any>(`${environment.weatherAPIURL.forecasts}/daily/5day/${locationKey}`, {
-          params: {
-            apikey: environment.weatherAPIKey,
-            metric: true,
-            details: true
-          }
-        })
-      ).then((forecast) => {
-        resolve(forecast);
-      }).catch((error) => {
-        reject(error);
-      })
-    });
-  }
 }

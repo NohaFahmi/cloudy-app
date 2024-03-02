@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, effect, OnInit} from '@angular/core';
 import {LocationsService} from "./services/locations/locations.service";
 
 @Component({

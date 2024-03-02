@@ -7,7 +7,7 @@
       <ion-label>Tomorrow</ion-label>
     </ion-segment-button>
     <ion-segment-button value="7 days">
-      <ion-label>7 days</ion-label>
+      <ion-label>4 days</ion-label>
     </ion-segment-button>
   </ion-segment>
     <div [ngSwitch]="type"
@@ -16,29 +16,30 @@
         <ion-card-header>
           <ion-card-title>Today's Forecast</ion-card-title>
         </ion-card-header>
-        <ion-card-content class="hours-list">
-          <div class="forecast-per-hour">
-            <p class="forecast-per-hour_time">2:00 PM</p>
-            <ion-icon class="forecast-per-hour_icon" name="rainy" size="large"></ion-icon>
-            <p class="forecast-per-hour_temperature">
-              10
+        <ion-card-content class="data-list">
+          <div class="forecast-details">
+            <p class="forecast-details_label">
+              <ion-icon name="sunny"
+                        class="forecast-details_icon sun"></ion-icon>UV Index</p>
+            <p class="forecast-details_value">
+              {{getUVIndexValue(dailyForecastWeather[0].AirAndPollen)}}
             </p>
           </div>
           <span class="separator"></span>
-          <div class="forecast-per-hour">
-            <p class="forecast-per-hour_time">2:00 PM</p>
-            <ion-icon class="forecast-per-hour_icon" name="rainy" size="large"></ion-icon>
-            <p class="forecast-per-hour_temperature">
-              10
+          <div class="forecast-details">
+            <p class="forecast-details_label">
+              <ion-icon class="forecast-details_icon"
+                        name="flash"></ion-icon>Wind</p>
+            <p class="forecast-details_value">
+              {{dailyForecastWeather[0].Day.Wind.Speed.Value}} {{dailyForecastWeather[0].Day.Wind.Speed.Unit}}
             </p>
           </div>
           <span class="separator"></span>
-         <div class="forecast-per-hour">
-           <p class="forecast-per-hour_time">2:00 PM</p>
-           <ion-icon class="forecast-per-hour_icon" name="rainy" size="large"></ion-icon>
-           <p class="forecast-per-hour_temperature">
-             10
-           </p>
+         <div class="forecast-details">
+           <p class="forecast-details_label">
+             <ion-icon class="forecast-details_icon water"
+                       name="water"></ion-icon>Humidity</p>
+           <p class="forecast-details_value">{{dailyForecastWeather[0].Day.RelativeHumidity.Average}}</p>
          </div>
         </ion-card-content>
       </ion-card>
@@ -46,68 +47,47 @@
         <ion-card-header>
           <ion-card-title>Tomorrow's Forecast</ion-card-title>
         </ion-card-header>
-        <ion-card-content class="hours-list">
-          <div class="forecast-per-hour">
-            <p class="forecast-per-hour_time">2:00 PM</p>
-            <ion-icon class="forecast-per-hour_icon" name="rainy" size="large"></ion-icon>
-            <p class="forecast-per-hour_temperature">
-              10
+        <ion-card-content class="data-list">
+          <div class="forecast-details">
+            <p class="forecast-details_label">
+              <ion-icon name="sunny"
+                        class="forecast-details_icon sun"></ion-icon>UV Index</p>
+            <p class="forecast-details_value">
+              {{getUVIndexValue(dailyForecastWeather[1].AirAndPollen)}}
             </p>
           </div>
           <span class="separator"></span>
-          <div class="forecast-per-hour">
-            <p class="forecast-per-hour_time">2:00 PM</p>
-            <ion-icon class="forecast-per-hour_icon" name="rainy" size="large"></ion-icon>
-            <p class="forecast-per-hour_temperature">
-              10
+          <div class="forecast-details">
+            <p class="forecast-details_label">
+              <ion-icon class="forecast-details_icon"
+                        name="flash"></ion-icon>
+              Wind</p>
+            <p class="forecast-details_value">
+              {{dailyForecastWeather[1].Day.Wind.Speed.Value}} {{dailyForecastWeather[1].Day.Wind.Speed.Unit}}
             </p>
           </div>
           <span class="separator"></span>
-          <div class="forecast-per-hour">
-            <p class="forecast-per-hour_time">2:00 PM</p>
-            <ion-icon class="forecast-per-hour_icon" name="rainy" size="large"></ion-icon>
-            <p class="forecast-per-hour_temperature">
-              10
-            </p>
+          <div class="forecast-details">
+            <p class="forecast-details_label">
+              <ion-icon class="forecast-details_icon water"
+                        name="water"></ion-icon>Humidity</p>
+            <p class="forecast-details_value">{{dailyForecastWeather[1].Day.RelativeHumidity.Average}}</p>
           </div>
         </ion-card-content>
       </ion-card>
       <ion-card *ngSwitchCase="FORECAST_OPTIONS.FUTURE"
                 class="future-card">
         <ion-card-header>
-          <ion-card-title>7 day  Forecast</ion-card-title>
+          <ion-card-title>Next 4 Days' Forecast</ion-card-title>
         </ion-card-header>
         <ion-card-content class="days-list">
-          <div class="forecast-per-day">
-            <p class="forecast-per-day_day">Today</p>
-            <ion-icon class="forecast-per-day_icon" name="rainy" size="large"></ion-icon>
-            <p class="forecast-per-day_desc">Sunny</p>
+          <div class="forecast-per-day" *ngFor="let day of dailyForecastWeather | slice: 1: 5">
+            <p class="forecast-per-day_day">{{day.Date | date: 'EEE'}}</p>
+            <p class="forecast-per-day_desc">
+              <ion-img [alt]="day.Day.IconPhrase"
+                       [src]="getWeatherIconImg(day.Day.Icon)"></ion-img> {{day.Day.IconPhrase}}</p>
             <p class="forecast-per-day_temperature">
-              <span class="high-temp">37</span> /10
-            </p>
-          </div>
-          <div class="forecast-per-day">
-            <p class="forecast-per-day_day">Today</p>
-            <ion-icon class="forecast-per-day_icon" name="rainy" size="large"></ion-icon>
-            <p class="forecast-per-day_desc">Sunny</p>
-            <p class="forecast-per-day_temperature">
-              <span class="high-temp">37</span> /10
-            </p>
-          </div>
-          <div class="forecast-per-day">
-            <p class="forecast-per-day_day">Today</p>
-            <ion-icon class="forecast-per-day_icon" name="rainy" size="large"></ion-icon>
-            <p class="forecast-per-day_desc">Sunny</p>
-            <p class="forecast-per-day_temperature">
-              <span class="high-temp">37</span> /10
-            </p>
-          </div>
-          <div class="forecast-per-day">
-            <p class="forecast-per-day_day">Today</p>
-            <ion-icon class="forecast-per-day_icon" name="rainy" size="large"></ion-icon>
-            <p class="forecast-per-day_desc">Sunny</p>
-            <p class="forecast-per-day_temperature">
-              <span class="high-temp">37</span> /10
+              <span class="high-temp">{{Math.round(day.Temperature.Maximum.Value)}}°</span> /{{Math.round(day.Temperature.Minimum.Value)}}°
             </p>
           </div>
         </ion-card-content>

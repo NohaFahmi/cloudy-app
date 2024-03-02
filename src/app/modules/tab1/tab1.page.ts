@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, effect, OnInit} from '@angular/core';
 import {LocationsService} from "../../services/locations/locations.service";
 import {ForecastService} from "../../services/forecast/forecast.service";
 import {environment} from "../../../environments/environment";
-import {DailyForecast, Forecast} from "../../models/forecast.interface";
+import {DailyForecast, Forecast, HourlyForecast} from "../../models/forecast.interface";
+import {Coords} from "../../models/location.interface";
 
 @Component({
   selector: 'app-tab1',
@@ -14,22 +15,33 @@ export class Tab1Page implements OnInit {
   todayWeatherInfo?: DailyForecast;
   isLoading = false;
   userLocationName?: string;
+  protected readonly Date = Date;
+  protected readonly Math = Math;
+
   constructor(private locationService: LocationsService,
-              private forecastService: ForecastService) {}
+              private forecastService: ForecastService) {
+    effect(() => {
+      if (this.locationService.userCoords() !== null) {
+        const coords: Coords = {
+          latitude: this.locationService.userCoords()?.latitude || 0,
+          longitude: this.locationService.userCoords()?.longitude || 0
+        }
+        this.getUserLocationKey(coords);
+      }
+      console.log('called');
+    });
+  }
   ngOnInit(): void {
-    this.getUserLocationKey();
-    // console.log(this.locationService.userCoords());
-    // console.log('TEST', this.getCurrentDateFromTimeStamp(1709442000))
   }
 
-  getUserLocationKey():void {
-    this.locationService.getLocationInfoByGeoposition().then((data) => {
+  getUserLocationKey(coords: Coords):void {
+    this.locationService.getLocationInfoByGeoposition(coords).then((data) => {
       this.userLocationName = data.ParentCity.EnglishName;
       if (data.Key) {
         this.getDailyForecast(data.Key);
       }
-    }).catch((e) => {
-      console.log('E', e);
+    }).catch((err) => {
+      console.log('Error', err);
     });
   }
   getDailyForecast(locationKey: string): void {
@@ -48,7 +60,6 @@ export class Tab1Page implements OnInit {
 
   getWeatherIconImg(iconCode: number):string {
     const code = iconCode < 10 ? `0${iconCode}` : iconCode;
-    console.log(`${environment.weatherAPIURL.imgURL}/${code}-s.png`);
     return `${environment.weatherAPIURL.imgURL}/${code}-s.png`;
   }
   getCurrentDateFromTimeStamp(unixTimestamp: number): {date: string; time: string;} {
@@ -71,6 +82,4 @@ export class Tab1Page implements OnInit {
       time
     }
   }
-
-  protected readonly Date = Date;
 }

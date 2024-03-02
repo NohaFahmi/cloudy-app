@@ -3,6 +3,16 @@ export interface Forecast {
   DailyForecasts: DailyForecast[];
 }
 
+export interface HourlyForecast {
+  DateTime: string;
+  WeatherIcon: number;
+  IconPhrase: string;
+  HasPrecipitation: boolean;
+  IsDaylight: boolean;
+  Temperature: Temperature;
+  RealFeelTemperatureShade: Temperature;
+  Wind: {speed: Temperature};
+}
 interface Headline {
   EffectiveDate: string;
   EffectiveEpochDate: number;
@@ -27,8 +37,16 @@ export interface DailyForecast {
   Link: string;
   Sun: SunMoon;
   Moon: SunMoon;
+  AirAndPollen: AirAndPallon[];
 }
 
+export interface AirAndPallon {
+  Name: string;
+  Value: number;
+  Category: string;
+  CategoryValue: number;
+  Type: string;
+}
 interface SunMoon {
   Rise: string;
   Set: string;
@@ -54,5 +72,10 @@ interface DayNight {
   HasPrecipitation: boolean;
   ShortPhrase: string;
   LongPhrase: string;
-  Wind: {Speed: TemperatureValue}
+  Wind: {Speed: TemperatureValue};
+  RelativeHumidity: {
+    Minimum: number;
+    Maximum: number;
+    Average: number;
+  }
 }

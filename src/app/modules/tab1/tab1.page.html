@@ -8,8 +8,9 @@
       <ion-img [alt]="todayWeatherInfo.Day.IconPhrase"
                 [src]="getWeatherIconImg(todayWeatherInfo.Day.Icon)"></ion-img>
       <ion-text>
-        <p class="temperature-degree">{{todayWeatherInfo.Temperature.Maximum.Value}}°{{todayWeatherInfo.Temperature.Maximum.Unit}}</p>
+        <p class="temperature-degree">{{Math.round(todayWeatherInfo.Temperature.Maximum.Value)}} °{{todayWeatherInfo.Temperature.Maximum.Unit}}</p>
       </ion-text>
+      <p class="current-dt">{{todayWeatherInfo.Day.ShortPhrase}}</p>
     </div>
   </ion-header>
   <ion-content>
