@@ -1,46 +1,12 @@
 <div class="saved-cities">
-  <ion-card class="city-card">
-      <ion-icon class="forecast-per-day_icon"
-                name="rainy"
-                size="large"></ion-icon>
+  <ion-card class="city-card" *ngFor="let city of cities;">
+    <ion-img [alt]="city.name"
+             [src]="getWeatherIconImg(city.icon)"></ion-img>
       <ion-card-title>
-        <h1>Madrid</h1>
+        <h1>{{city.name}}</h1>
       </ion-card-title>
       <ion-text>
-        <p class="temp">36</p>
+        <p class="temp">{{city.temp}}</p>
       </ion-text>
-  </ion-card>
-  <ion-card class="city-card">
-    <ion-icon class="forecast-per-day_icon"
-              name="rainy"
-              size="large"></ion-icon>
-    <ion-card-title>
-      <h1>Madrid</h1>
-    </ion-card-title>
-    <ion-text>
-      <p class="temp">36</p>
-    </ion-text>
-  </ion-card>
-  <ion-card class="city-card">
-    <ion-icon class="forecast-per-day_icon"
-              name="rainy"
-              size="large"></ion-icon>
-    <ion-card-title>
-      <h1>Madrid</h1>
-    </ion-card-title>
-    <ion-text>
-      <p class="temp">36</p>
-    </ion-text>
-  </ion-card>
-  <ion-card class="city-card">
-    <ion-icon class="forecast-per-day_icon"
-              name="rainy"
-              size="large"></ion-icon>
-    <ion-card-title>
-      <h1>Madrid</h1>
-    </ion-card-title>
-    <ion-text>
-      <p class="temp">36</p>
-    </ion-text>
   </ion-card>
 </div>

@@ -1,5 +1,6 @@
 import {Component, effect, OnInit} from '@angular/core';
 import {LocationsService} from "./services/locations/locations.service";
+import {Storage} from "@ionic/storage-angular";
 
 @Component({
   selector: 'app-root',

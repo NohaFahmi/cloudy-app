@@ -8,9 +8,12 @@
   </ion-header>
 
   <ion-content [fullscreen]="true">
-    <ng-container>
-      <app-saved-cities></app-saved-cities>
+    <ng-container *ngIf="cities.length > 0">
+      <app-saved-cities [cities]="cities"></app-saved-cities>
     </ng-container>
+    <ion-text *ngIf="cities.length === 0" class="empty-msg">
+      <h4>No cities saved</h4>
+    </ion-text>
   </ion-content>
 
 </div>

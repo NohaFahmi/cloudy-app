@@ -39,4 +39,21 @@ export class LocationsService {
       })
     });
   }
+
+  getLocationInfoByCityName(cityKeyword: string): Promise<LocationInfo[]> {
+    return new Promise((resolve, reject) => {
+      lastValueFrom(
+        this.httpClient.get<LocationInfo[]>(`${environment.weatherAPIURL.locations}/cities/search`, {
+          params: {
+            apikey: environment.weatherAPIKey,
+            q: cityKeyword
+          }
+        })
+      ).then((locations) => {
+        resolve(locations);
+      }).catch((error) => {
+        reject(error);
+      })
+    });
+  }
 }

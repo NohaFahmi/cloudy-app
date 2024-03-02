@@ -4,6 +4,7 @@ import {ForecastService} from "../../services/forecast/forecast.service";
 import {environment} from "../../../environments/environment";
 import {DailyForecast, Forecast, HourlyForecast} from "../../models/forecast.interface";
 import {Coords} from "../../models/location.interface";
+import {StorageService} from "../../services/Storage/storage.service";
 
 @Component({
   selector: 'app-tab1',
@@ -19,7 +20,8 @@ export class Tab1Page implements OnInit {
   protected readonly Math = Math;
 
   constructor(private locationService: LocationsService,
-              private forecastService: ForecastService) {
+              private forecastService: ForecastService,
+              private storageService: StorageService) {
     effect(() => {
       if (this.locationService.userCoords() !== null) {
         const coords: Coords = {
@@ -50,6 +52,13 @@ export class Tab1Page implements OnInit {
       .then((data) => {
         this.weatherInfo = data;
         this.todayWeatherInfo = data.DailyForecasts[0];
+        const cities = [];
+        cities.push({
+          icon: this.todayWeatherInfo.Day.Icon,
+          temp: `${Math.round(this.todayWeatherInfo.Temperature.Minimum.Value)} °${this.todayWeatherInfo.Temperature.Minimum.Unit}`,
+          name: this.userLocationName
+        });
+        this.storageService.set('savedCities', cities);
       })
       .catch((error) => {
         console.error('Error fetching daily forecast data:', error);
@@ -61,25 +70,5 @@ export class Tab1Page implements OnInit {
   getWeatherIconImg(iconCode: number):string {
     const code = iconCode < 10 ? `0${iconCode}` : iconCode;
     return `${environment.weatherAPIURL.imgURL}/${code}-s.png`;
-  }
-  getCurrentDateFromTimeStamp(unixTimestamp: number): {date: string; time: string;} {
-    const utcDate = new Date(unixTimestamp * 1000);
-    const year = utcDate.getUTCFullYear();
-    const month = utcDate.getUTCMonth() + 1; // Months are zero-indexed, so add 1
-    const day = utcDate.getUTCDate();
-    const dayName = utcDate.getUTCDay();
-    let hours = utcDate.getUTCHours();
-    const minutes = utcDate.getUTCMinutes();
-    const period = hours >= 12 ? 'PM' : 'AM';
-    if (hours > 12) {
-      hours -= 12;
-    }
-    console.log(dayName);
-    const date = `${day.toString().padStart(2, '0')}-${month.toString().padStart(2, '0')}-${year}`;
-    const time = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
-    return {
-      date,
-      time
-    }
   }
 }

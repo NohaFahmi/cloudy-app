@@ -20,6 +20,11 @@
   }
   ion-header, ion-toolbar, ion-title, ion-content {
     --background: #0B131E;
-    color: var(--ion-color-primary-contrast)
+    color: var(--ion-color-primary-contrast);
+  }
+  .empty-msg {
+    color: var(--ion-color-primary-contrast);
+    text-align: center;
+    padding: 0 40px;
   }
 }

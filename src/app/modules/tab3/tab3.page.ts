@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import {LocationsService} from "../../services/locations/locations.service";
+import {LocationInfo} from "../../models/location.interface";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-tab3',
@@ -6,24 +9,21 @@ import { Component } from '@angular/core';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
-  public data = [
-    'Amsterdam',
-    'Buenos Aires',
-    'Cairo',
-    'Geneva',
-    'Hong Kong',
-    'Istanbul',
-    'London',
-    'Madrid',
-    'New York',
-    'Panama City',
-  ];
-  public results = [...this.data];
-  constructor() {}
+  public results: LocationInfo[] = [];
+  isLoading = false;
+  constructor(private locationService: LocationsService, private router: Router) {}
 
   handleInput(event: any) {
     const query = event.target.value.toLowerCase();
-    this.results = this.data.filter((d) => d.toLowerCase().indexOf(query) > -1);
+    this.isLoading = true;
+    this.locationService.getLocationInfoByCityName(query).then((results) => {
+      this.results = results;
+    }).finally(() => {
+      this.isLoading = false;
+    })
   }
 
+  onSelectCity(result: LocationInfo): void {
+    this.router.navigate([`/tabs/tab3/city/${result.Key}/${result.EnglishName}`]);
+  }
 }
