@@ -12,69 +12,12 @@
   </ion-segment>
     <div [ngSwitch]="type"
          class="forecast-section__tabs-content">
-      <ion-card *ngSwitchCase="FORECAST_OPTIONS.TODAY">
-        <ion-card-header>
-          <ion-card-title>Today's Forecast</ion-card-title>
-        </ion-card-header>
-        <ion-card-content class="data-list">
-          <div class="forecast-details">
-            <p class="forecast-details_label">
-              <ion-icon name="sunny"
-                        class="forecast-details_icon sun"></ion-icon>UV Index</p>
-            <p class="forecast-details_value">
-              {{getUVIndexValue(dailyForecastWeather[0].AirAndPollen)}}
-            </p>
-          </div>
-          <span class="separator"></span>
-          <div class="forecast-details">
-            <p class="forecast-details_label">
-              <ion-icon class="forecast-details_icon"
-                        name="flash"></ion-icon>Wind</p>
-            <p class="forecast-details_value">
-              {{dailyForecastWeather[0].Day.Wind.Speed.Value}} {{dailyForecastWeather[0].Day.Wind.Speed.Unit}}
-            </p>
-          </div>
-          <span class="separator"></span>
-         <div class="forecast-details">
-           <p class="forecast-details_label">
-             <ion-icon class="forecast-details_icon water"
-                       name="water"></ion-icon>Humidity</p>
-           <p class="forecast-details_value">{{dailyForecastWeather[0].Day.RelativeHumidity.Average}}</p>
-         </div>
-        </ion-card-content>
-      </ion-card>
-      <ion-card *ngSwitchCase="FORECAST_OPTIONS.TOMORROW">
-        <ion-card-header>
-          <ion-card-title>Tomorrow's Forecast</ion-card-title>
-        </ion-card-header>
-        <ion-card-content class="data-list">
-          <div class="forecast-details">
-            <p class="forecast-details_label">
-              <ion-icon name="sunny"
-                        class="forecast-details_icon sun"></ion-icon>UV Index</p>
-            <p class="forecast-details_value">
-              {{getUVIndexValue(dailyForecastWeather[1].AirAndPollen)}}
-            </p>
-          </div>
-          <span class="separator"></span>
-          <div class="forecast-details">
-            <p class="forecast-details_label">
-              <ion-icon class="forecast-details_icon"
-                        name="flash"></ion-icon>
-              Wind</p>
-            <p class="forecast-details_value">
-              {{dailyForecastWeather[1].Day.Wind.Speed.Value}} {{dailyForecastWeather[1].Day.Wind.Speed.Unit}}
-            </p>
-          </div>
-          <span class="separator"></span>
-          <div class="forecast-details">
-            <p class="forecast-details_label">
-              <ion-icon class="forecast-details_icon water"
-                        name="water"></ion-icon>Humidity</p>
-            <p class="forecast-details_value">{{dailyForecastWeather[1].Day.RelativeHumidity.Average}}</p>
-          </div>
-        </ion-card-content>
-      </ion-card>
+      <app-forecast-details-card *ngSwitchCase="FORECAST_OPTIONS.TODAY"
+                                 [forecastDetails]="dailyForecastWeather[0]"
+                                 cardTitle="Today's Forecast"></app-forecast-details-card>
+      <app-forecast-details-card *ngSwitchCase="FORECAST_OPTIONS.TOMORROW"
+                                 [forecastDetails]="dailyForecastWeather[1]"
+                                 cardTitle="Tomorrow's Forecast"></app-forecast-details-card>
       <ion-card *ngSwitchCase="FORECAST_OPTIONS.FUTURE"
                 class="future-card">
         <ion-card-header>

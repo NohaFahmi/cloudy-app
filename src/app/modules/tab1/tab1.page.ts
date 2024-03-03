@@ -34,17 +34,20 @@ export class Tab1Page implements OnInit {
     });
   }
   ngOnInit(): void {
+    console.log('HERE');
   }
 
   getUserLocationKey(coords: Coords):void {
     this.locationService.getLocationInfoByGeoposition(coords).then((data) => {
-      this.userLocationName = data.ParentCity.EnglishName;
+      console.log('test', data);
+      this.userLocationName = data.EnglishName;
       if (data.Key) {
         this.getDailyForecast(data.Key);
       }
     }).catch((err) => {
       console.log('Error', err);
-    });
+    }).finally(() => {
+    })
   }
   getDailyForecast(locationKey: string): void {
     this.isLoading = true;

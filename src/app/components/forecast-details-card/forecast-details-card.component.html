@@ -1,0 +1,31 @@
+<ion-card *ngIf="forecastDetails">
+  <ion-card-header>
+    <ion-card-title>{{cardTitle}}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content class="data-list">
+    <div class="forecast-details-card">
+      <p class="forecast-details-card_label">
+        <ion-icon name="sunny"
+                  class="forecast-details-card_icon sun"></ion-icon>UV Index</p>
+      <p class="forecast-details-card_value">
+        {{getUVIndexValue(forecastDetails.AirAndPollen)}}
+      </p>
+    </div>
+    <span class="separator"></span>
+    <div class="forecast-details-card">
+      <p class="forecast-details-card_label">
+        <ion-icon class="forecast-details-card_icon"
+                  name="flash"></ion-icon>Wind</p>
+      <p class="forecast-details-card_value">
+        {{forecastDetails.Day.Wind.Speed.Value}} {{forecastDetails.Day.Wind.Speed.Unit}}
+      </p>
+    </div>
+    <span class="separator"></span>
+    <div class="forecast-details-card">
+      <p class="forecast-details-card_label">
+        <ion-icon class="forecast-details-card_icon water"
+                  name="water"></ion-icon>Humidity</p>
+      <p class="forecast-details-card_value">{{forecastDetails.Day.RelativeHumidity.Average}}</p>
+    </div>
+  </ion-card-content>
+</ion-card>

@@ -1,0 +1,36 @@
+<div class="city-weather-details" *ngIf="cityWeatherInfo && !isLoading">
+  <ion-header [translucent]="false">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+      <ion-title>
+        <h2 class="page-title"><span>{{locationName}}</span>
+          Weather Details</h2>
+      </ion-title>
+    </ion-toolbar>
+    <div class="text-content">
+      <ion-img [alt]="cityWeatherInfo.Day.IconPhrase"
+               [src]="getWeatherIconImg(cityWeatherInfo.Day.Icon)"></ion-img>
+      <ion-text>
+        <p class="temperature-degree">{{Math.round(cityWeatherInfo.Temperature.Maximum.Value)}} °{{cityWeatherInfo.Temperature.Maximum.Unit}}</p>
+      </ion-text>
+      <p class="current-dt">{{cityWeatherInfo.Day.ShortPhrase}}</p>
+    </div>
+  </ion-header>
+  <ion-content id="content">
+    <app-forecast-details-card cardTitle="Today's Forecast"
+                               [forecastDetails]="cityWeatherInfo"></app-forecast-details-card>
+    <div class="page-actions">
+      <ion-button fill="outline" class="save-location-btn" (click)="saveCityToSavedCitiesList()">
+        Save City
+        <ion-icon slot="end" name="add"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-content>
+</div>
+<ion-loading css-class="loader"
+             [isOpen]="isLoading"
+             [keyboardClose]="false"
+             spinner="dots">
+</ion-loading>

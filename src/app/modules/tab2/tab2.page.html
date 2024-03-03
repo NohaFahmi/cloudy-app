@@ -15,5 +15,9 @@
       <h4>No cities saved</h4>
     </ion-text>
   </ion-content>
-
+  <ion-loading css-class="loader"
+               [isOpen]="isLoading"
+               [keyboardClose]="false"
+               spinner="dots">
+  </ion-loading>
 </div>

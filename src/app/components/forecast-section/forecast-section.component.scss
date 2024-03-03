@@ -18,45 +18,6 @@
     font-size: 1.3rem;
     margin-bottom: 10px;
   }
-  .data-list {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 25px 20px;
-    gap: 15px;
-  }
-  .separator {
-    height: 80px;
-    width: 1px;
-    background-color: #9399A2;
-    border: 1px solid #9399A2;
-  }
-  .forecast-details {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    width: fit-content;
-    color: #9399A2;
-    &_label {
-      display: flex;
-      align-items: center;
-      gap: 5px
-    }
-    &_icon {
-      &.water {
-        color: var(--ion-color-primary);
-      }
-      &.sun {
-        color: var(--ion-color-warning);
-      }
-    }
-    &_label, &_value {
-      font-size: 1rem;
-    }
-  }
   .days-list {
     display: flex;
     flex-direction: column;
@@ -75,7 +36,6 @@
     }
     ion-img {
       width: 50px !important;
-      height: 50px !important;
     }
     &_desc {
       display: flex;
